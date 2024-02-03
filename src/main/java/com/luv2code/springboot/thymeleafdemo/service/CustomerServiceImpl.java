@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luv2code.springboot.thymeleafdemo.dao.EmployeeRepository;
-import com.luv2code.springboot.thymeleafdemo.entity.Employee;
+import com.luv2code.springboot.thymeleafdemo.entity.Customer;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -20,15 +20,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
-	public List<Employee> findAll() {
+	public List<Customer> findAll() {
 		return employeeRepository.findAllByOrderByLastNameAsc();
 	}
 
 	@Override
-	public Employee findById(int theId) {
-		Optional<Employee> result = employeeRepository.findById(theId);
+	public Customer findById(int theId) {
+		Optional<Customer> result = employeeRepository.findById(theId);
 		
-		Employee theEmployee = null;
+		Customer theEmployee = null;
 		
 		if (result.isPresent()) {
 			theEmployee = result.get();
@@ -42,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void save(Employee theEmployee) {
+	public void save(Customer theEmployee) {
 		employeeRepository.save(theEmployee);
 	}
 

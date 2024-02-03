@@ -1,6 +1,6 @@
 package com.luv2code.springboot.thymeleafdemo.controller;
 
-import com.luv2code.springboot.thymeleafdemo.entity.Employee;
+import com.luv2code.springboot.thymeleafdemo.entity.Customer;
 import com.luv2code.springboot.thymeleafdemo.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +27,7 @@ public class EmployeeController {
 	@GetMapping("/list")
 	public String listEmployees(Model theModel) {
 
-		List<Employee> theEmployees = employeeService.findAll();
+		List<Customer> theEmployees = employeeService.findAll();
 
 		// add to the spring model, Act as a key value pair -> employees is paired with theEmployees
 		theModel.addAttribute("employees", theEmployees);
@@ -38,7 +38,7 @@ public class EmployeeController {
 
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel){
-		Employee theEmployee = new Employee();
+		Customer theEmployee = new Customer();
 		theModel.addAttribute("employee", theEmployee);
 		return "employees/employee-form";
 	}
@@ -51,13 +51,13 @@ public class EmployeeController {
 
 	@GetMapping("/showFormForUpdate")
 	public String showFormForUpdate(@RequestParam("employeeId") int theId, Model theModel){
-		Employee theEmployee = employeeService.findById(theId);
+		Customer theEmployee = employeeService.findById(theId);
 		theModel.addAttribute("employee", theEmployee);
 		return "employees/employee-form";
 	}
 	@PostMapping("/save")
 	// This employee comes from the form
-	public String saveEmployee(@ModelAttribute("employee") Employee theEmployee){
+	public String saveEmployee(@ModelAttribute("employee") Customer theEmployee){
 		employeeService.save(theEmployee);
 		return "redirect:/employees/list";
 	}
